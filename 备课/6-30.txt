@@ -1,0 +1,24 @@
+爬虫
+
+第一节课
+	看ppt 01 基于第三方库的爬虫应用
+	看第4页
+	12页  代码 见pycharm 12.py
+
+第二节课
+	参考第PPT16页代码 见pycharm  结合浏览器控制台里的网络 解释HTTP
+	
+
+第三节课
+	从22页开始		BeautifulSoup
+	代码参考26.py
+
+第四节课
+	豆瓣网案例
+	参见douban.py
+
+第五节课
+	爬取懂车帝网站的数据
+	https://www.dongchedi.com/sales
+	参见dongche.py
+	
