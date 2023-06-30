@@ -1,10 +1,24 @@
-SciPy和Matplotlib
+SciPy pandas 和Matplotlib
 
 
 第一节课
+    SciPy
+    讲到第10页
+
+    8.py
+    10.py
 
 
 第二节课
+    pandas
+    讲到第12页
+
+    9.py
+    11.py
+
+
 第三节课
+    P13~P14
+
 第四节课
 第五节课
