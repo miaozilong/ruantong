@@ -11,7 +11,7 @@ SciPy pandas 和Matplotlib
 
 第二节课
     pandas
-    讲到第12页
+    P11~12
 
     9.py
     11.py
@@ -19,6 +19,10 @@ SciPy pandas 和Matplotlib
 
 第三节课
     P13~P14
-
+    13.py
 第四节课
+    P15~18
+    17.py
+    18.py
+
 第五节课

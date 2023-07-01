@@ -1,17 +1,16 @@
 import numpy as np
-from scipy import misc
-import matplotlib.pyplot as plt
-import imageio
 
 if __name__ == '__main__':
-    face = misc.face()
-    imageio.imwrite('face.jpg', face)
-    plt.imshow(face)
-    plt.show()
-    # 输入/输出，显示图像
-    # 基本操作 - 裁剪，翻转，旋转等
-    # 图像过滤 - 去噪，锐化等
-    # 图像分割 - 标记与不同对象相对应的像素
-    flip_ud_face = np.flipud(face)
-    plt.imshow(flip_ud_face)
-    plt.show()
+    # 构建numpy数据
+    # 构建一维数据
+    l = [1, 2, 3]
+    ndarray = np.array(l)
+    ndarray = np.array([[1, 2, 3], [4, 5, 6]])
+    # 打印形状
+    print(ndarray.shape)
+    # 打印维度
+    print(ndarray.ndim)
+    # 打印元素个数
+    print(ndarray.size)
+    # 打印类型
+    print(ndarray.dtype)
