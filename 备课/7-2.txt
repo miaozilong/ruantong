@@ -26,3 +26,6 @@ SciPy pandas 和Matplotlib
     18.py
 
 第五节课
+    P19~最后
+    22.py
+    34.py

@@ -15,7 +15,7 @@ if __name__ == '__main__':
     print(df.ndim)
     print(df.size)
     print(df.T)
-    print(df.at['无情', '英语'])
+    print(df.at['铁手', '英语'])
     print(df.iat[0, 0])
     # 这里是左右都闭
     print(df.loc['无情':'追命', '数学':'英语'])
