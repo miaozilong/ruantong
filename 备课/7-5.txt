@@ -1,0 +1,273 @@
+# 第一节课
+# 安装数据库和数据库客户端  需要连接成功
+
+
+# 第二节课
+# 管理数据库
+show databases;
+use world;
+show tables;
+show columns from city;
+# 创建数据库
+create database demo;
+use demo;
+drop database demo;
+
+use demo;
+create table Students
+(
+    SId   varchar(10),
+    Sname varchar(10),
+    Sage  datetime,
+    Ssex  varchar(10)
+);
+
+drop table students;
+alter table students
+    add column (pic blob);
+alter table Students
+    drop column pic;
+alter table students
+    change Sname Sname2 varchar(30);
+# alter命令
+
+#
+# 数据类型
+# 数值类型   int    float double decimal(m,n)
+# 日期类型    date time datetime timestamp
+# 字符串 char varchar text blob
+
+
+# 第三节课
+# 插入数据
+# 删除数据 delete truncate
+# 修改数据
+# 查询        where 子句    > < !=   null的处理
+#             like  子句
+#  多表关联查询
+#
+
+
+# 第四节课
+#   union
+#
+#   排序
+
+# 分组
+
+# 约束
+#     主键 唯一 非空 外键 检查
+
+
+
+
+
+
+
+脚本开始
+
+use demo;
+create table Student
+(
+    SId   varchar(10),
+    Sname varchar(10),
+    Sage  datetime,
+    Ssex  varchar(10)
+);
+insert into Student
+values ('01', '赵雷', '1990-01-01', '男');
+insert into Student
+values ('02', '钱电', '1990-12-21', '男');
+insert into Student
+values ('03', '孙风', '1990-05-20', '男');
+insert into Student
+values ('04', '李云', '1990-08-06', '男');
+insert into Student
+values ('05', '周梅', '1991-12-01', '女');
+insert into Student
+values ('06', '吴兰', '1992-03-01', '女');
+insert into Student
+values ('07', '郑竹', '1989-07-01', '女');
+insert into Student
+values ('09', '张三', '2017-12-20', '女');
+insert into Student
+values ('10', '李四', '2017-12-25', '女');
+insert into Student
+values ('11', '李四', '2017-12-30', '女');
+insert into Student
+values ('12', '赵六', '2017-01-01', '女');
+insert into Student
+values ('13', '孙七', '2018-01-01', '女');
+
+create table Course
+(
+    CId   varchar(10),
+    Cname nvarchar(10),
+    TId   varchar(10)
+);
+insert into Course
+values ('01', '语文', '02');
+insert into Course
+values ('02', '数学', '01');
+insert into Course
+values ('03', '英语', '03');
+
+create table Teacher
+(
+    TId   varchar(10),
+    Tname varchar(10)
+);
+insert into Teacher
+values ('01', '张三');
+insert into Teacher
+values ('02', '李四');
+insert into Teacher
+values ('03', '王五');
+
+
+create table SC
+(
+    SId   varchar(10),
+    CId   varchar(10),
+    score decimal(18, 1)
+);
+insert into SC
+values ('01', '01', 80);
+insert into SC
+values ('01', '02', 90);
+insert into SC
+values ('01', '03', 99);
+insert into SC
+values ('02', '01', 70);
+insert into SC
+values ('02', '02', 60);
+insert into SC
+values ('02', '03', 80);
+insert into SC
+values ('03', '01', 80);
+insert into SC
+values ('03', '02', 80);
+insert into SC
+values ('03', '03', 80);
+insert into SC
+values ('04', '01', 50);
+insert into SC
+values ('04', '02', 30);
+insert into SC
+values ('04', '03', 20);
+insert into SC
+values ('05', '01', 76);
+insert into SC
+values ('05', '02', 87);
+insert into SC
+values ('06', '01', 31);
+insert into SC
+values ('06', '03', 34);
+insert into SC
+values ('07', '02', 89);
+insert into SC
+values ('07', '03', 98);
+
+
+
+脚本结束
+
+
+
+
+
+
+
+
+
+
+use demo;
+
+
+# 查询名字中含有「风」字的学生信息
+select *
+from student
+where student.Sname like '%风%';
+
+
+# 查询男生、女生人数
+select student.Ssex ,count(*) as 人数
+from student
+GROUP BY student.Ssex;
+
+
+# 24.查询 1990 年出生的学生名单
+
+select *
+from student
+where YEAR(student.Sage)=1990;
+
+# 4.1 查有成绩的学生信息
+
+select *
+from student
+where EXISTS(select * from sc where student.SId = sc.SId)
+
+# 查询「李」姓老师的数量
+select count(*)
+from teacher
+where teacher.Tname like '李%';
+
+# 30.查询存在不及格的课程
+
+select DISTINCT sc.CId
+from sc
+where sc.score < 60;
+
+
+# 求每门课程的学生人数
+select sc.CId,count(*) as 学生人数
+from sc
+GROUP BY sc.CId
+
+
+# 查询学过「张三」老师授课的同学的信息
+select student.*
+from teacher,
+     course,
+     student,
+     sc
+where teacher.Tname = '张三'
+  and teacher.TId = course.TId
+  and course.CId = sc.CId
+  and sc.SId = student.SId;
+
+
+# 检索" 01 "课程分数小于 60，按分数降序排列的学生信息
+select student.*
+from student,
+     sc
+where sc.CId = '01'
+  and sc.score < 60
+  and student.SId = sc.SId;
+
+
+# 按平均成绩从高到低显示所有学生的所有课程的成绩以及平均成绩
+select
+sc.SId,sc.CId,sc.score,t1.avgscore
+from  sc left join (select sc.SId,avg(sc.score) as avgscore
+from sc
+GROUP BY sc.SId) as t1 on sc.SId =t1.SId
+ORDER BY t1.avgscore DESC
+
+
+# 查询各科成绩前三名的记录
+# 思路：前三名转化为若大于此成绩的数量少于3即为前三名。
+
+select *
+from sc
+where  (select count(*) from sc as a where sc.CId =a.CId and  sc.score <a.score )<3
+ORDER BY CId asc,sc.score desc
+
+
+# 查询每门课程被选修的学生数
+select sc.CId,count(*)
+from sc
+GROUP BY sc.CId
+
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        <!--写代码的位置-->
+        let x = prompt("请输入一个数字")
+        let re = /^\d+$/g
+        if (!re.test(x)) {
+            alert('请输入合法的整数')
+        } else {
+            let m = x % 2;
+            if (m == 1) {
+                // 在控制台
+                console.log(x + '是奇数')
+            } else {
+                console.log(x + '是偶数')
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

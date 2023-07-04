@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #main {
+            width: 800px;
+            height: 600px;
+            border: 1px solid red;
+        }
+    </style>
+    <!--    引入 echarts   -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.2/echarts.common.js"></script>
+    <script>
+        // 自己的代码
+        // 1. 等页面加载完  2. 初始化echarts   3.准备echarts的数据    4.设置echarts的数据
+        // 1. 等页面加载完
+        document.addEventListener('DOMContentLoaded', () => {
+            // 2. 初始化echarts    参数为显示echart图表的HMTL文档节点
+            let mainNode = document.getElementById('main');
+            let myChart = echarts.init(mainNode);
+            // 3. 准备echarts的数据    类似于python中的字典
+            let option = {
+                title: {
+                    text: '我的第一张echarts图'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['销量']
+                },
+                xAxis: {
+                    data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+                },
+                yAxis: {},
+                series: [
+                    {
+                        name: '销量',
+                        type: 'line',
+                        data: [5, 20, 36, 10, 10, 20]
+                    }
+                ]
+            }
+            // 4.设置echarts的数据
+            myChart.setOption(option)
+        })
+    </script>
+</head>
+<body>
+<div id="main"></div>
+</body>
+</html>

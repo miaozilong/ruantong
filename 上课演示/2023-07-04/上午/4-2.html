@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        <!--        使用javascript实现汉诺塔的移动  -->
+        let count = 0
+
+        function carry(n, a, b, c) {
+            if (n == 1) {
+                console.log(a + '->' + c)
+                count++
+            } else {
+                carry(n - 1, a, c, b);
+                console.log(a + '->' + c)
+                count++
+                carry(n - 1, b, a, c)
+            }
+        }
+        carry(9, 'a', 'b', 'c')
+        // 2**n - 1
+        console.log('一共移动了' + count + '次')
+    </script>
+</head>
+<body>
+
+</body>
+</html>

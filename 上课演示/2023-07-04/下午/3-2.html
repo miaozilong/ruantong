@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--    写JS的位置-->
+    <script>
+        let pi4 = 0
+        for (let i = 1; i < 1000000000; i++) {
+            pi4 += 1 / (2 * i - 1) * (Math.pow(-1, i + 1))
+        }
+        let pi = pi4 * 4
+        console.log(pi)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

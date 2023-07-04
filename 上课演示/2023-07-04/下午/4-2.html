@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        let steps = 0
+        // 函数
+        function move(n, a, b, c) {
+            if (n === 1) {
+                // 2. 从a柱移动到c柱
+                console.log(a + '->' + c)
+                steps++
+            } else {
+                // 1. 将n-1个盘子,从a借助c移动到b
+                move(n - 1, a, c, b);
+                // 2. 从a柱移动到c柱
+                console.log(a + '->' + c)
+                steps++
+                // 3. 将n-1个盘子,从b借助a移动到c
+                move(n - 1, b, a, c)
+            }
+        }
+        move(5, 'a', 'b', 'c')
+        console.log('一共移动了' + steps + '步')
+    </script>
+</head>
+<body>
+
+</body>
+</html>
