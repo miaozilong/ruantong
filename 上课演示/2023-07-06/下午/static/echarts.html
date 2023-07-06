@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eharts演示</title>
+    <style>
+        #main {
+            width: 800px;
+            height: 600px;
+            border: 1px solid red;
+
+        }
+    </style>
+    <!--    1. 引入echarts   -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.2/echarts.common.js"></script>
+    <script>
+        /*  1. 引入echarts
+            2. 在界面上准备一个区域,给echarts画图
+            3. 等页面加载完成初始化echarts
+            4. 准备渲染的数据
+            5. 加载配置
+         */
+        // 3. 等页面加载完成初始化echarts
+        document.addEventListener('DOMContentLoaded', () => {
+            let mainNode = document.getElementById("main")
+            let myChart = echarts.init(mainNode)
+            // 每隔3秒,获取后台的数据
+            setInterval(() => {
+                // 4. 准备渲染的数据     类似与python中的字典
+                fetch("/sales", {headers: {"Content-Type": 'application/json'}}).then(rsp => rsp.json()).then(data => {
+                    let option = {
+                        title: {
+                            text: 'Eharts演示'
+                        },
+                        tooltip: {},
+                        legend: {
+                            data: ['销量']
+                        },
+                        xAxis: {
+                            data: ['衬衫', '羊毛衫', '雪纺衫', '高跟鞋', '袜子']
+                        },
+                        yAxis: {},
+                        series: [
+                            {
+                                name: '销量',
+                                type: 'line',
+                                data
+                            }
+                        ]
+                    }
+                    // 5. 加载数据
+                    myChart.setOption(option)
+                })
+            }, 3 * 1000)
+        })
+
+    </script>
+</head>
+<body>
+<!--2. 在界面上准备一个区域,给echarts画图-->
+<div id="main"></div>
+</body>
+</html>
