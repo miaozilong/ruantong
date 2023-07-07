@@ -24,23 +24,13 @@ if __name__ == '__main__':
     print()
     model = LinearRegression()
     print(model)
-
     joblib.dump(model, 'lr.model')
-
     model.fit(X_train, y_train)
-
     # 得出模型
     print("正规方程权重系数为：\n", model.coef_)
     print("正规方程偏置为:\n",model.intercept_)
-
-
-
     # 模型评估
     print(model.predict(X_test))
-
     error = mean_squared_error(y_test, model.predict(X_test))
     print("正规方程均方误差为:\n", error)
-
-
-
     print(y_test)
